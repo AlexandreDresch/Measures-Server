@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,21 +7,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Customer {
-  id           String    @id @default(cuid())
-  customerCode String    @unique
-  measures     Measure[]
-}
-
 model Measure {
-  id              String      @id @default(uuid())
-  customer        Customer    @relation(fields: [customerId], references: [id])
-  customerId      String
-  measureDatetime DateTime
-  measureType     MeasureType
-  hasConfirmed    Boolean     @default(false)
-  imageUrl        String
-  measureValue    Int?
+  measure_uuid     String      @id @default(uuid())
+  customer_code    String
+  measure_datetime DateTime
+  measure_type     MeasureType
+  has_confirmed    Boolean     @default(false)
+  image_url        String
+  measure_value    Int?
 }
 
 enum MeasureType {
